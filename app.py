@@ -11,8 +11,10 @@ class restaurant:
     def sell(self):
         self.stock -= 1
         self.moneys += self.price
-        print(f"{self.stock} items left. {self} currently has {self.moneys} dollars.")
+        print(f"{self.stock} items left. This restaurant currently has {self.moneys} dollars.")
 
+stockinput = input("How much stock does this restaurant have? ")
+princeinput = input("How much does this item cost? ")
 chipotle = restaurant("bowls", 10, 15)
 chipotle.sell()
 
