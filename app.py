@@ -24,11 +24,17 @@ chipotle = restaurant("bowls", 10, 15)
 chipotle.inventory() """
 
 
-# make a chipotle item and calculate price!
+# managing chipotle orders
+# customize bowl or burrito, can make multiple
+# calculates total price + tax
 import json
 try:
     with open("orders.json", "r") as file:
-        orders = json.load(file)
+        previous = input("you have orders saved in your cart. would you like to continue with them? ")
+        if previous.lower() == "yes":
+            orders = json.load(file)
+        elif previous.lower() == "no":
+            orders = []
 except FileNotFoundError:
     orders = []
 except json.JSONDecodeError:
@@ -60,7 +66,7 @@ class order:
 ask = input("would you like to place an order? ")
 
 while ask == "yes":
-    bb = input("would you like to build a bowl or a burrito?")
+    bb = input("would you like to build a bowl or a burrito? ")
     if bb.lower() == "burrito":
         chipotle = order("burrito", 10)
     elif bb.lower() == "bowl":
@@ -81,7 +87,6 @@ while ask == "yes":
         chipotle.add_toppings(protein)
     else:
         print("we don't have this protein!")
-        ask = input("would you like to build a burrito or a bowl? ")
 
     rice = input("would you like rice? ")
     if rice.lower() == "white rice":
@@ -113,11 +118,19 @@ while ask == "yes":
 
     finish = input("are you ready to place your order? ")
     if finish.lower() == "yes":
-        print(chipotle.place_order())
-        orders.append(chipotle.__dict__)
-        print(orders)
+        orders.append(chipotle.place_order())
     
     ask = input("would you like to place an order? ")
 else: 
     with open("orders.json", "w") as file:
         json.dump(orders, file)
+
+with open('orders.json', 'r') as file:
+    orders_data = json.load(file)
+
+total_order = 0
+
+for order in orders_data:
+    total_order += order['price']
+
+print(f"your total is ${total_order}")
