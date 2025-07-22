@@ -66,8 +66,14 @@ class order:
 with open('menu.json', 'r') as file:
     menu_data = json.load(file)
 
-protein_menu = menu_data[0]
-topping_menu = menu_data[1]
+protein_menu = []
+topping_menu = []
+
+for addon in menu_data:
+    if addon["type"] == "protein":
+        protein_menu.append(addon)
+    else:
+        topping_menu.append(addon)
 
 ask = input("would you like to place another order? ").lower()
 
@@ -79,9 +85,9 @@ while ask == "yes":
         chipotle = order("bowl", 10)
 
     protein = input("choose your protein: ").lower()
-    for type in protein_menu:
-        if protein == type["name"]:
-            chipotle.price += type["price"]
+    for meat in protein_menu:
+        if protein == meat["name"]:
+            chipotle.price += meat["price"]
             chipotle.add_toppings(protein)
 
     """ if protein.lower() == "honey chicken":
@@ -145,6 +151,6 @@ with open('orders.json', 'r') as file:
 total_order = 0
 
 for order in orders_data:
-    total_order += order['price']
+    total_order += round(order['price'], 2)
 
 print(f"your total is ${total_order}")
