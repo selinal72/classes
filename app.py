@@ -30,10 +30,10 @@ chipotle.inventory() """
 import json
 try:
     with open("orders.json", "r") as file:
-        previous = input("you have orders saved in your cart. would you like to continue with them? ")
-        if previous.lower() == "yes":
+        previous = input("you have orders saved in your cart. would you like to continue with them? ").lower()
+        if previous == "yes":
             orders = json.load(file)
-        elif previous.lower() == "no":
+        elif previous == "no":
             orders = []
 except FileNotFoundError:
     orders = []
@@ -63,17 +63,28 @@ class order:
         print(rounded)
         return dict
 
-ask = input("would you like to place an order? ")
+with open('menu.json', 'r') as file:
+    menu_data = json.load(file)
+
+protein_menu = menu_data[0]
+topping_menu = menu_data[1]
+
+ask = input("would you like to place another order? ").lower()
 
 while ask == "yes":
-    bb = input("would you like to build a bowl or a burrito? ")
-    if bb.lower() == "burrito":
+    bb = input("would you like to build a bowl or a burrito? ").lower()
+    if bb == "burrito":
         chipotle = order("burrito", 10)
-    elif bb.lower() == "bowl":
+    elif bb == "bowl":
         chipotle = order("bowl", 10)
 
-    protein = input("choose your protein: ")
-    if protein.lower() == "honey chicken":
+    protein = input("choose your protein: ").lower()
+    for type in protein_menu:
+        if protein == type["name"]:
+            chipotle.price += type["price"]
+            chipotle.add_toppings(protein)
+
+    """ if protein.lower() == "honey chicken":
         chipotle.price += 2.40
         chipotle.add_toppings(protein)
     elif protein.lower() == "chicken" or protein.lower() == "sofritas" or protein.lower() == "veggie":
@@ -86,41 +97,44 @@ while ask == "yes":
         chipotle.price += 2.55
         chipotle.add_toppings(protein)
     else:
-        print("we don't have this protein!")
+        print("we don't have this protein!") """
 
-    rice = input("would you like rice? ")
-    if rice.lower() == "white rice":
-        chipotle.add_toppings(rice)
-    elif rice.lower() == "brown rice":
+    rice = input("choose your rice: ").lower()
+    if rice == "white rice" or rice == "brown rice":
         chipotle.add_toppings(rice)
 
-    beans = input("would you like any beans? ")
-    if beans.lower() == "black beans":
-        chipotle.add_toppings(beans)
-    elif beans.lower() == "pinto beans":
+    beans = input("choose your beans: ").lower()
+    if beans == "black beans" or beans == "pinto beans":
         chipotle.add_toppings(beans)
 
-    ask_top = input("would you like any toppings? ")
-    while ask_top.lower() == "yes":
-        each_top = input("which toppings would you like? ")
-        if each_top.lower() == "adobo ranch":
+    ask_top = input("would you like any toppings? ").lower()
+    while ask_top == "yes":
+        each_top = input("which toppings would you like? ").lower()
+
+        for top in topping_menu:
+            if each_top == top["name"]:
+                chipotle.price += top["price"]
+        chipotle.add_toppings(each_top)
+
+        """ if each_top == "adobo ranch":
             chipotle.price += 0.75
             chipotle.add_toppings(each_top)
-        elif each_top.lower() == "guacamole":
+        elif each_top == "guacamole":
             chipotle.price += 2.95
             chipotle.add_toppings(each_top)
-        elif each_top.lower() == "queso":
+        elif each_top == "queso":
             chipotle.price += 1.80
             chipotle.add_toppings(each_top)
         else:
-            chipotle.add_toppings(each_top)
-        ask_top = input("would you like any toppings? ")
+            chipotle.add_toppings(each_top) """
 
-    finish = input("are you ready to place your order? ")
-    if finish.lower() == "yes":
+        ask_top = input("would you like any toppings? ").lower()
+
+    finish = input("are you ready to place your order? ").lower()
+    if finish == "yes":
         orders.append(chipotle.place_order())
     
-    ask = input("would you like to place an order? ")
+    ask = input("would you like to place another order? ").lower()
 else: 
     with open("orders.json", "w") as file:
         json.dump(orders, file)

@@ -1,0 +1,37 @@
+[
+    [
+        {
+            "name" : "honey chicken",
+            "price" : 2.4
+        }, {
+            "name" : "chicken",
+            "price" : 1.8
+        }, {
+            "name" : "sofritas",
+            "price" : 1.8
+        }, {
+            "name" : "veggie",
+            "price" : 1.8
+        }, {
+            "name" : "steak",
+            "price" : 3.55
+        }, {
+            "name" : "beef barbacoa",
+            "price" : 3.55
+        }, {
+            "name" : "carnitas",
+            "price" : 2.55
+        }
+    ], [
+        {
+            "name" : "adobo ranch",
+            "price" : 0.75
+        }, {
+            "name" : "guacamole",
+            "price" : 2.95
+        }, {
+            "name" : "queso",
+            "price" : 1.8
+        }
+    ]
+]
