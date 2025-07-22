@@ -1,31 +1,6 @@
-""" # create multiple restaurants w multiple or 1 item(s)
-# keep track of stock
-# compare profits
-
-# restaturant manager for a chain of ur choice (sorta like janet's side quest) 
-# 1) find average sales
-
-class restaurant:
-    def __init__(self, item, stock, price):
-        self.item = item
-        self.stock = stock
-        self.price = price
-        self.moneys = 0
-    def sell(self):
-        self.stock -= 1
-        self.moneys += self.price
-        print(f"{self.stock} items left. This restaurant currently has {self.moneys} dollars.")
-    def inventory(self):
-        print(f"This restaurant has {self.stock} {self.item} left.")
-
-stockinput = input("How much stock does this restaurant have? ")
-princeinput = input("How much does this item cost? ")
-chipotle = restaurant("bowls", 10, 15)
-chipotle.inventory() """
-
-
 # managing chipotle orders
 # customize bowl or burrito, can make multiple
+# saves orders to json file so u can continue 
 # calculates total price + tax
 import json
 try:
@@ -90,21 +65,6 @@ while ask == "yes":
             chipotle.price += meat["price"]
             chipotle.add_toppings(protein)
 
-    """ if protein.lower() == "honey chicken":
-        chipotle.price += 2.40
-        chipotle.add_toppings(protein)
-    elif protein.lower() == "chicken" or protein.lower() == "sofritas" or protein.lower() == "veggie":
-        chipotle.price += 1.80
-        chipotle.add_toppings(protein)
-    elif protein.lower() == "steak" or protein.lower() == "beef barbacoa":
-        chipotle.price += 3.55
-        chipotle.add_toppings(protein)
-    elif protein.lower() == "carnitas":
-        chipotle.price += 2.55
-        chipotle.add_toppings(protein)
-    else:
-        print("we don't have this protein!") """
-
     rice = input("choose your rice: ").lower()
     if rice == "white rice" or rice == "brown rice":
         chipotle.add_toppings(rice)
@@ -121,18 +81,6 @@ while ask == "yes":
             if each_top == top["name"]:
                 chipotle.price += top["price"]
         chipotle.add_toppings(each_top)
-
-        """ if each_top == "adobo ranch":
-            chipotle.price += 0.75
-            chipotle.add_toppings(each_top)
-        elif each_top == "guacamole":
-            chipotle.price += 2.95
-            chipotle.add_toppings(each_top)
-        elif each_top == "queso":
-            chipotle.price += 1.80
-            chipotle.add_toppings(each_top)
-        else:
-            chipotle.add_toppings(each_top) """
 
         ask_top = input("would you like any toppings? ").lower()
 
