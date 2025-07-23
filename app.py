@@ -41,14 +41,18 @@ class order:
 with open('menu.json', 'r') as file:
     menu_data = json.load(file)
 
+protein_data = []
+topping_data = []
 protein_menu = []
 topping_menu = []
 
 for addon in menu_data:
     if addon["type"] == "protein":
-        protein_menu.append(addon)
+        protein_data.append(addon)
+        protein_menu.append(addon["name"])
     else:
-        topping_menu.append(addon)
+        topping_data.append(addon)
+        topping_menu.append(addon["name"])
 
 ask = input("would you like to place another order? ").lower()
 
@@ -59,25 +63,29 @@ while ask == "yes":
     elif bb == "bowl":
         chipotle = order("bowl", 10)
 
+    print(protein_menu)
     protein = input("choose your protein: ").lower()
-    for meat in protein_menu:
+    for meat in protein_data:
         if protein == meat["name"]:
             chipotle.price += meat["price"]
             chipotle.add_toppings(protein)
-
+    
+    print("white rice, brown rice, or no rice")
     rice = input("choose your rice: ").lower()
     if rice == "white rice" or rice == "brown rice":
         chipotle.add_toppings(rice)
 
+    print("black beans, pinto beans, or no beans")
     beans = input("choose your beans: ").lower()
     if beans == "black beans" or beans == "pinto beans":
         chipotle.add_toppings(beans)
 
+    print(topping_menu)
     ask_top = input("would you like any toppings? ").lower()
     while ask_top == "yes":
         each_top = input("which toppings would you like? ").lower()
 
-        for top in topping_menu:
+        for top in topping_data:
             if each_top == top["name"]:
                 chipotle.price += top["price"]
         chipotle.add_toppings(each_top)

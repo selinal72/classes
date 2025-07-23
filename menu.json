@@ -36,8 +36,40 @@
         "price" : 2.95,
         "type" : "topping"
     }, {
-        "name" : "queso",
+        "name" : "queso blanco",
         "price" : 1.8,
+        "type" : "topping"
+    }, {
+        "name" : "fresh tomato salsa",
+        "price" : 0,
+        "type" : "topping"
+    }, {
+        "name" : "roasted chili-corn salsa",
+        "price" : 0,
+        "type" : "topping"
+    }, {
+        "name" : "tomatillo-green chili salsa",
+        "price" : 0,
+        "type" : "topping"
+    }, {
+        "name" : "tomatillo-red chili salsa",
+        "price" : 0,
+        "type" : "topping"
+    }, {
+        "name" : "sour cream",
+        "price" : 0,
+        "type" : "topping"
+    }, {
+        "name" : "fajita veggies",
+        "price" : 0,
+        "type" : "topping"
+    }, {
+        "name" : "cheese",
+        "price" : 0,
+        "type" : "topping"
+    }, {
+        "name" : "romaine lettuce",
+        "price" : 0,
         "type" : "topping"
     }
 ]
