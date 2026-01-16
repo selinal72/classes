@@ -5,7 +5,7 @@
 import json
 try:
     with open("orders.json", "r") as file:
-        previous = input("you have orders saved in your cart. would you like to continue with them? ").lower()
+        previous = input("you have orders saved in your cart. would you like to continue with them? (yes/no) ").lower()
         if previous == "yes":
             orders = json.load(file)
         elif previous == "no":
@@ -54,7 +54,7 @@ for addon in menu_data:
         topping_data.append(addon)
         topping_menu.append(addon["name"])
 
-ask = input("would you like to place another order? ").lower()
+ask = input("would you like to place another order? (yes/no) ").lower()
 
 while ask == "yes":
     bb = input("would you like to build a bowl or a burrito? ").lower()
@@ -81,7 +81,7 @@ while ask == "yes":
         chipotle.add_toppings(beans)
 
     print(topping_menu)
-    ask_top = input("would you like any toppings? ").lower()
+    ask_top = input("would you like any toppings? (yes/no) ").lower()
     while ask_top == "yes":
         each_top = input("which toppings would you like? ").lower()
 
@@ -90,9 +90,9 @@ while ask == "yes":
                 chipotle.price += top["price"]
         chipotle.add_toppings(each_top)
 
-        ask_top = input("would you like any toppings? ").lower()
+        ask_top = input("would you like any toppings? (yes/no) ").lower()
 
-    finish = input("are you ready to place your order? ").lower()
+    finish = input("are you ready to place your order? (yes/no) ").lower()
     if finish == "yes":
         orders.append(chipotle.place_order())
     
