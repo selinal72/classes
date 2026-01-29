@@ -92,9 +92,9 @@ while ask == "yes":
 
         ask_top = input("would you like any toppings? (yes/no) ").lower()
 
-    finish = input("are you ready to place your order? (yes/no) ").lower()
-    if finish == "yes":
-        orders.append(chipotle.place_order())
+    """ finish = input("are you ready to place your order? (yes/no) ").lower()
+    if finish == "yes": """
+    orders.append(chipotle.place_order())
     
     ask = input("would you like to place another order? ").lower()
 else: 
