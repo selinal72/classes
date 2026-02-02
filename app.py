@@ -54,6 +54,12 @@ for addon in menu_data:
         topping_data.append(addon)
         topping_menu.append(addon["name"])
 
+def protein_selection(user_input, data_list):
+    for meat in data_list:
+        if user_input == meat["name"]:
+            chipotle.price += meat["price"]
+            chipotle.add_toppings(user_input)
+
 ask = input("would you like to place another order? (yes/no) ").lower()
 
 while ask == "yes":
@@ -65,10 +71,7 @@ while ask == "yes":
 
     print(protein_menu)
     protein = input("choose your protein: ").lower()
-    for meat in protein_data:
-        if protein == meat["name"]:
-            chipotle.price += meat["price"]
-            chipotle.add_toppings(protein)
+    protein_selection(protein, protein_data)
     
     print("white rice, brown rice, or no rice")
     rice = input("choose your rice: ").lower()
@@ -92,8 +95,6 @@ while ask == "yes":
 
         ask_top = input("would you like any toppings? (yes/no) ").lower()
 
-    """ finish = input("are you ready to place your order? (yes/no) ").lower()
-    if finish == "yes": """
     orders.append(chipotle.place_order())
     
     ask = input("would you like to place another order? ").lower()
